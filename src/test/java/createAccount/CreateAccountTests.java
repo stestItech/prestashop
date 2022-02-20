@@ -22,6 +22,7 @@ public class CreateAccountTests extends BaseTests {
         var myAccount = createAccount.clickRegisterButton();
         assertTrue(myAccount.getAccountCreateConfirmation().contains("Your account has been created"),
         "Alert text is incorrect");
+        // commit test
     }
 
 }
