@@ -13,8 +13,9 @@ public class CreateAccountTests extends BaseTests {
     public void createAccount() {
         var loginPage = homePage.clickSignInLink();
         String uuid = UUID.randomUUID().toString();
-        loginPage.setRegisterEmailAddressField("stest.siarhei+" + uuid + "@outlook.com");
-        System.out.println(uuid);
+        //loginPage.setRegisterEmailAddressField("stest.siarhei+" + uuid + "@outlook.com");
+        loginPage.setRegisterEmailAddressField("stest.siarhei@outlook.com");
+        //System.out.println(uuid);
         var createAccount = loginPage.clickCreateAccountButton();
         createAccount.setFirstName("Siarhei");
         createAccount.setLastName("Filimonau");

@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class BaseTests {
 
-    private WebDriver driver;
+    protected WebDriver driver;
     protected HomePage homePage;
 
     @BeforeClass
@@ -19,7 +19,7 @@ public class BaseTests {
         System.setProperty("webdriver.chrome.driver","resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         goHome();
         homePage = new HomePage(driver);
     }
@@ -30,9 +30,9 @@ public class BaseTests {
         driver.get("http://prestashop.qatestlab.com.ua/en/");
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
 }

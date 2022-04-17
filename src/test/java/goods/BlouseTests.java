@@ -1,8 +1,8 @@
 package goods;
 
 import base.BaseTests;
+import header.ContentMenu;
 import org.testng.annotations.Test;
-import pages.Header;
 
 public class BlouseTests extends BaseTests {
 
@@ -11,7 +11,12 @@ public class BlouseTests extends BaseTests {
         var login = homePage.clickSignInLink();
         login.setLoginEmailAddressField("stest.siarhei@outlook.com");
         login.setPasswordField("Test123");
-        var myAccount = login.clickSignInButton();
-        Header header = new Header(driver);
+        login.clickSignInButton();
+
+        ContentMenu contentMenu = new ContentMenu(driver);
+        contentMenu.hoverOverMenu("Women");
+        contentMenu.hoverOverMenu("Blouses");
+        contentMenu.clickLink("Blouses");
+
     }
 }
