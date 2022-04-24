@@ -1,6 +1,7 @@
 package goods;
 
 import base.BaseTests;
+import header.CartDropDown;
 import header.ContentMenu;
 import org.testng.annotations.Test;
 
@@ -14,9 +15,13 @@ public class BlouseTests extends BaseTests {
         login.clickSignInButton();
 
         ContentMenu contentMenu = new ContentMenu(driver);
-        contentMenu.hoverOverMenu("Women");
-        contentMenu.hoverOverMenu("Blouses");
-        contentMenu.clickLink("Blouses");
+        contentMenu.hoverOverWomenMenu();
+        var cataloguePage = contentMenu.clickSubmenuLink("Blouses");
+
+        cataloguePage.hoverOverItem(3).clickAddToCart(3);
+
+        CartDropDown cartDropDown = new CartDropDown(driver);
+        cartDropDown.hoverOverCartDropDown();
 
     }
 }
