@@ -21,7 +21,8 @@ public class BlouseTests extends BaseTests {
         cataloguePage.hoverOverItem(3).clickAddToCart(3);
 
         CartDropDown cartDropDown = new CartDropDown(driver);
+        //cartDropDown.clickCartDropDown().clickProceedButton();
         cartDropDown.hoverOverCartDropDown();
-
+        cartDropDown.clickCheckoutButton();
     }
 }
