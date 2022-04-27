@@ -12,7 +12,7 @@ public class CreateAccountTests extends BaseTests {
     @Test
     public void createAccount() {
         var loginPage = homePage.clickSignInLink();
-        String uuid = UUID.randomUUID().toString();
+        //String uuid = UUID.randomUUID().toString();
         //loginPage.setRegisterEmailAddressField("stest.siarhei+" + uuid + "@outlook.com");
         loginPage.setRegisterEmailAddressField("stest.siarhei@outlook.com");
         //System.out.println(uuid);
