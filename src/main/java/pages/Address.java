@@ -22,4 +22,20 @@ public class Address {
     public Address(WebDriver driver) {
         this.driver = driver;
     }
+
+    public void typeFirstName(String firstName) {
+        driver.findElement(firstNameField).sendKeys(firstName);
+    }
+
+    public void typeLastName(String lastName) {
+        driver.findElement(lastNameField).sendKeys(lastName);
+    }
+
+    public void typeCompany(String companyName) {
+        driver.findElement(companyField).sendKeys(companyName);
+    }
+
+    public void typeAddress1(String address1) {
+        driver.findElement(address1Field).sendKeys(address1);
+    }
 }

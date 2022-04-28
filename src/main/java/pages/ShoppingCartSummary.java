@@ -13,7 +13,9 @@ public class ShoppingCartSummary {
         this.driver = driver;
     }
 
-    public void clickProceedButton() {
+    public Address clickProceedButton() {
+
         driver.findElement(proceedToCheckoutButton).click();
+        return new Address(driver);
     }
 }

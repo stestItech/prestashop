@@ -4,6 +4,7 @@ import base.BaseTests;
 import header.CartDropDown;
 import header.ContentMenu;
 import org.testng.annotations.Test;
+import pages.Address;
 
 public class BlouseTests extends BaseTests {
 
@@ -23,6 +24,13 @@ public class BlouseTests extends BaseTests {
         CartDropDown cartDropDown = new CartDropDown(driver);
         //cartDropDown.clickCartDropDown().clickProceedButton();
         cartDropDown.hoverOverCartDropDown();
-        cartDropDown.clickCheckoutButton();
+        cartDropDown.clickCheckoutButton().clickProceedButton();
+
+        Address address = new Address(driver);
+        address.typeFirstName("John");
+        address.typeLastName("Johnson");
+        address.typeCompany("Google");
+        address.typeAddress1("Central street, 20/40");
+
     }
 }
