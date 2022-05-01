@@ -3,13 +3,15 @@ package goods;
 import base.BaseTests;
 import header.CartDropDown;
 import header.ContentMenu;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.Address;
+import pages.AddAddress;
+import pages.Shipping;
 
 public class BlouseTests extends BaseTests {
 
     @Test
-    public void addBlouseItemToBasket() {
+    public void addAddress() {
         var login = homePage.clickSignInLink();
         login.setLoginEmailAddressField("stest.siarhei@outlook.com");
         login.setPasswordField("Test123");
@@ -26,11 +28,43 @@ public class BlouseTests extends BaseTests {
         cartDropDown.hoverOverCartDropDown();
         cartDropDown.clickCheckoutButton().clickProceedButton();
 
-        Address address = new Address(driver);
-        address.typeFirstName("John");
-        address.typeLastName("Johnson");
-        address.typeCompany("Google");
-        address.typeAddress1("Central street, 20/40");
+        AddAddress address = new AddAddress(driver);
+        address.setFirstName("John");
+        address.setLastName("Johnson");
+        address.setCompany("Google");
+        address.setAddress1("Central street, 20/40");
+        address.setAddress2("West District");
+        address.setPostCode("55656");
+        address.setCity("New York");
+        address.selectCountry(1);
+        address.setHomePhone("+375222555555");
+        address.setMobilePhone("+375294444444");
+        address.selectState(5);
+        address.setAddressTitle("Some Address Title");
+        address.clickSave();
+    }
 
+    @Test
+    public void addItemToCart() {
+        var login = homePage.clickSignInLink();
+        login.setLoginEmailAddressField("stest.siarhei@outlook.com");
+        login.setPasswordField("Test123");
+        login.clickSignInButton();
+
+        ContentMenu contentMenu = new ContentMenu(driver);
+        contentMenu.hoverOverWomenMenu();
+        var cataloguePage = contentMenu.clickSubmenuLink("Blouses");
+
+        cataloguePage.hoverOverItem(3).clickAddToCart(3);
+
+        CartDropDown cartDropDown = new CartDropDown(driver);
+        //cartDropDown.clickCartDropDown().clickProceedButton();
+        cartDropDown.hoverOverCartDropDown();
+        cartDropDown.clickCheckoutButton().clickProceedButton().clickCheckout();
+
+        Shipping shipping = new Shipping(driver);
+        shipping.SelectAgreeTerms();
+        String a = shipping.clickCheckout().getNoPaymentModuleAlertText();
+        Assert.assertTrue(a.contains("No payment modules have been installed."));
     }
 }
