@@ -67,4 +67,25 @@ public class BlouseTests extends BaseTests {
         String a = shipping.clickCheckout().getNoPaymentModuleAlertText();
         Assert.assertTrue(a.contains("No payment modules have been installed."));
     }
+
+    @Test
+    public void checkBlouseItems() {
+        var login = homePage.clickSignInLink();
+        login.setLoginEmailAddressField("stest.siarhei@outlook.com");
+        login.setPasswordField("Test123");
+        login.clickSignInButton();
+
+        ContentMenu contentMenu = new ContentMenu(driver);
+        contentMenu.hoverOverWomenMenu();
+        var cataloguePage = contentMenu.clickSubmenuLink("Blouses");
+        int numberOfItems = cataloguePage.items.size();
+        int numberOfBlouseItems = 0;
+        for (int i = 0; i < numberOfItems; i++) {
+            String j = cataloguePage.items.get(i).getText();
+            if (j.contains("Blouse") || j.contains("blouse") || j.contains("Shirt") || j.contains("top")) {
+                numberOfBlouseItems++;
+            }
+        }
+        Assert.assertEquals(numberOfBlouseItems, numberOfItems, "Not all items are blouses");
+    }
 }
